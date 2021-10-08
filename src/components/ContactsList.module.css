@@ -40,8 +40,19 @@
   margin-right: auto;
   width: 500px;
   border: rgb(20, 20, 19) solid 1px;
-  border-radius: 5px;
+
+  padding: 0;
 }
 
+.listItem:not(:last-child) {
+  border-bottom: 1px solid #000;
+}
 .listItem {
+  padding-left: 20px;
+}
+.listItem:nth-child(even) {
+  background-color: azure;
+}
+.listItem:nth-child(odd) {
+  background-color: rgb(178, 231, 231);
 }

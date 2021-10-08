@@ -12,7 +12,7 @@ class ContactsList extends Component{
                     this.props.contacts.map(el => (<li
                         className={style.listItem}
                         key={uuidv4()} >
-                    {el.name}:__{el.number}
+                    {el.name}:  {el.number}
                       </li>))
                 }
         </ul>
