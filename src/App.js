@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import ContactsList from './components/ContactsList.jsx';
 import ContactForm from './components/ContactForm';
 
@@ -9,7 +9,7 @@ import ContactForm from './components/ContactForm';
 
 
 class App extends Component {
-  newId = uuidv4()
+
 
   state = {
     contacts: []

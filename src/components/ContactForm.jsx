@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import style from './ContactsList.module.css';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 class ContactForm extends Component{
@@ -8,6 +11,9 @@ class ContactForm extends Component{
     name: '',
     number: ''
     };
+
+    inputNameId = uuidv4();
+    inputNumberId=uuidv4();
     
      handleChangeAllInput = (ev) => {
     this.setState({
@@ -19,12 +25,13 @@ class ContactForm extends Component{
 
 
 render() {
-    const { inputNameId, handleChangeAllInput, state } = this
+    const { inputNameId, handleChangeAllInput, state,inputNumberId } = this
 
     return (<>
-        <form onSubmit={(e) => { e.preventDefault();this.props.handleSubmit(state) }}>
-        <label htmlFor={inputNameId}>Title</label>
+        <form className={style.form} onSubmit={(e) => { e.preventDefault();this.props.handleSubmit(state) }}>
+        <label className={style.label} htmlFor={inputNameId}>Name</label>
         <input
+          className={style.input}
           id={inputNameId}
           value={state.name}
           type="text"
@@ -33,9 +40,12 @@ render() {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           onChange={handleChangeAllInput}
-        />
-
+            />
+            
+        <label className={style.label} htmlFor={inputNumberId}>Phone</label>
         <input
+          className={style.input}
+          id={inputNumberId}
           value={state.number}
           type="tel"
           name="number"
@@ -45,7 +55,7 @@ render() {
           onChange={handleChangeAllInput}
         />
 
-        <button
+        <button className={style.button}
           type="submit"
         >Add contact</button>
       </form>
