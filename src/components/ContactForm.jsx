@@ -22,7 +22,7 @@ render() {
     const { inputNameId, handleChangeAllInput, state } = this
 
     return (<>
-      <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={(e) => { e.preventDefault();this.props.handleSubmit(state) }}>
         <label htmlFor={inputNameId}>Title</label>
         <input
           id={inputNameId}
@@ -58,5 +58,5 @@ render() {
 export default ContactForm
 
 ContactForm.propTypes = {
-    handleSubmit:PropTypes.string.isRequire
+    handleSubmit: PropTypes.any.isRequired
 }

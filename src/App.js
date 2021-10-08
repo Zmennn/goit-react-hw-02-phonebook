@@ -15,10 +15,10 @@ class App extends Component {
     contacts: []
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
-    this.setState(prevState => ({ contacts: [...prevState.contacts, { name: prevState.name, number: prevState.number }] }));
+  handleSubmit = ({ name, number }) => {
+
+
+    this.setState(prevState => ({ contacts: [...prevState.contacts, { name, number }] }));
     this.setState({
       name: '',
       number: ''
