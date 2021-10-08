@@ -16,9 +16,9 @@ class ContactForm extends Component{
     inputNumberId=uuidv4();
     
      handleChangeAllInput = (ev) => {
-    this.setState({
-      [ev.target.name]: ev.target.value
-    })
+       this.setState({
+         [ev.target.name]: ev.target.value
+       });     
   };
 
   
@@ -28,7 +28,14 @@ render() {
     const { inputNameId, handleChangeAllInput, state,inputNumberId } = this
 
     return (<>
-        <form className={style.form} onSubmit={(e) => { e.preventDefault();this.props.handleSubmit(state) }}>
+      <form className={style.form} onSubmit={(e) => {
+        e.preventDefault();
+        this.props.handleSubmit(state);
+         this.setState({
+      name: '',
+      number: ''
+    })
+      }}>
         <label className={style.label} htmlFor={inputNameId}>Name</label>
         <input
           className={style.input}
