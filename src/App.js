@@ -13,24 +13,26 @@ class App extends Component {
 
   state = {
     contacts: [],
-    filter: ""
+    filter: "",
+    filteredContacts: []
   };
 
   handleSubmit = ({ name, number }) => {
     this.setState(prevState => ({ contacts: [...prevState.contacts, { name, number }] }));
-
   }
 
   handleChangeFindInput = (ev) => {
     this.setState({
       filter: ev.target.value
     });
-
+    this.setState({
+      filteredContacts: this.handleFilter()
+    })
   }
 
-  handleFilter = () => {
+  handleFilter = () => this.contacts.filter
 
-  }
+
 
 
   render() {
