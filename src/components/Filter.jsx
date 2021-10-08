@@ -1,4 +1,6 @@
-import { Component } from "react";
+import style from './ContactsList.module.css';
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
 
 
 class Filter extends Component{
@@ -6,6 +8,9 @@ class Filter extends Component{
 
 
     render() {
+
+const{props}=this
+
         return (<>
             <label htmlFor="find">Find contacts by name</label>
             <input
@@ -20,4 +25,8 @@ class Filter extends Component{
     }
 }
 
-export default Filter
+export default Filter;
+
+Filter.propTypes = {
+    handleChangeFindInput: PropTypes.any.isRequired
+}
