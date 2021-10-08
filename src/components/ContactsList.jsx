@@ -7,7 +7,7 @@ class ContactsList extends Component{
 
     render() {
         return (
-            <ul>        
+            <ul className={style.list}>        
                 {
                     this.props.contacts.map(el => (<li
                         className={style.listItem}
