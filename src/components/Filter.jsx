@@ -28,5 +28,5 @@ const{props}=this
 export default Filter;
 
 Filter.propTypes = {
-    handleChangeFindInput: PropTypes.any.isRequired
+    handleChangeFindInput: PropTypes.func.isRequired
 }

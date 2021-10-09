@@ -4,7 +4,6 @@ import style from './ContactsList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 
-
 class ContactForm extends Component{
 
     state = {
@@ -22,8 +21,6 @@ class ContactForm extends Component{
   };
 
   
-
-
 render() {
     const { inputNameId, handleChangeAllInput, state,inputNumberId } = this
 
@@ -75,5 +72,5 @@ render() {
 export default ContactForm
 
 ContactForm.propTypes = {
-    handleSubmit: PropTypes.any.isRequired
+    handleSubmit: PropTypes.func.isRequired
 }
