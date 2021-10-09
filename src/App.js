@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react';
 import './App.css';
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import ContactsList from './components/ContactsList.jsx';
 import ContactForm from './components/ContactForm';
 import Filter from './components/Filter.jsx'
@@ -10,7 +9,6 @@ import Filter from './components/Filter.jsx'
 
 class App extends Component {
 
-
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -18,38 +16,40 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: "",
-    filteredContacts: [],
-    regExp: ""
+    filter: [],
+    filterStatus: false,
   };
 
+
   handleSubmit = ({ name, number }) => {
-    this.setState(prevState => ({ contacts: [...prevState.contacts, { name, number }] }));
+    this.setState(prevState => ({ contacts: [...prevState.contacts, { name, number, id: uuidv4() }] }));
   }
+
 
   handleChangeFindInput = (ev) => {
+
+    const regExp = new RegExp(`^${ev.target.value.toLowerCase()}`);
+
     this.setState({
-      filter: ev.target.value.toLowerCase()
-    });
-    this.setState({
-      filteredContacts: this.handleFilter()
+      filterStatus: ev.target.value === "" ? false : true,
+      filter: this.handleFilter(regExp)
     })
   }
 
-  handleFilter = () => {
 
-    this.setState(prevState => ({
-      regExp: new RegExp(`^${prevState.filter}`)
-    }));
+  handleFilter = (regExp) => {
+    return this.state.contacts.filter((el) => {
 
-
-    this.state.contacts.filter((el) => {
       const arr = el.name.toLowerCase().split(" ");
-      arr.forEach(word => console.log(word));
+
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].toLowerCase().match(regExp) !== null) {
+          return true
+        }
+      }
+      return false
     })
   }
-  // handleFilter = () => console.log(this.state.contacts);
-
 
 
   render() {
@@ -69,12 +69,11 @@ class App extends Component {
         />
 
         <ContactsList
-          contacts={state.contacts}
+          contacts={state.filterStatus ? state.filter : state.contacts}
         />
       </div>
     </>)
   }
-
 }
 
 export default App;
