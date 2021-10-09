@@ -12,12 +12,12 @@ class ContactsList extends Component{
                         className={style.listItem}
                         key={el.id} >
                         {el.name}:  {el.number}
-                        {this.props.deleteStatus && (<button
+                        <button
                             type="button"
                             className={style.deleteButton}
                             id={el.id}
                             onClick={this.props.handleDelete}
-                        >Delete</button>)}
+                        >Delete</button>
                       </li>))
                 }
         </ul>
@@ -31,5 +31,4 @@ export default ContactsList
 ContactsList.propTypes = {
     contacts: PropTypes.array.isRequired,
     handleDelete: PropTypes.func.isRequired,
-    deleteStatus:PropTypes.bool.isRequired,
 }
