@@ -15,11 +15,12 @@ const{props}=this
             <label htmlFor="find">Find contacts by name</label>
             <input
                 className={style.input}
+                autoComplete="off"
                 id="find"
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]"
-                onChange={(ev)=>props.handleChangeFindInput(ev)}
+                onChange={(ev) => { ev.preventDefault(); props.handleChangeFindInput(ev) }}
                 ></input>
      </>   )
     }

@@ -3,7 +3,7 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import ContactsList from './components/ContactsList.jsx';
 import ContactForm from './components/ContactForm';
-import Filter from './components/Filter.jsx'
+import Filter from './components/Filter.jsx';
 
 
 
@@ -22,8 +22,12 @@ class App extends Component {
 
 
   handleSubmit = ({ name, number }) => {
-    this.setState(prevState => ({ contacts: [...prevState.contacts, { name, number, id: uuidv4() }] }));
-  }
+    if (!this.state.contacts.find(el => el.name === name)) {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, { name, number, id: uuidv4() }]
+      }))
+    } else { alert(`${name} is already in contacts`) }
+  };
 
 
   handleChangeFindInput = (ev) => {
@@ -34,7 +38,7 @@ class App extends Component {
       filterStatus: ev.target.value === "" ? false : true,
       filter: this.handleFilter(regExp)
     })
-  }
+  };
 
 
   handleFilter = (regExp) => {
@@ -49,7 +53,7 @@ class App extends Component {
       }
       return false
     })
-  }
+  };
 
 
   render() {

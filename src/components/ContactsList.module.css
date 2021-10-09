@@ -49,10 +49,18 @@
 }
 .listItem {
   padding-left: 20px;
+  text-align: left;
 }
 .listItem:nth-child(even) {
   background-color: azure;
 }
 .listItem:nth-child(odd) {
   background-color: rgb(178, 231, 231);
+}
+
+.deleteButton {
+  background-color: rgb(130, 233, 99);
+  margin-right: 20px;
+  margin-left: auto;
+  display: inline-block;
 }
