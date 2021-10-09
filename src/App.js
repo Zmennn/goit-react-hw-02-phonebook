@@ -11,15 +11,13 @@ class App extends Component {
 
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+
     ],
     filter: [],
-    filterStatus: false,
+
   };
 
+  filterStatus = false;
 
   handleSubmit = ({ name, number }) => {
     if (!this.state.contacts.find(el => el.name === name)) {
@@ -33,11 +31,12 @@ class App extends Component {
   handleChangeFindInput = (ev) => {
 
     const regExp = new RegExp(`^${ev.target.value.toLowerCase()}`);
+    this.filterStatus = ev.target.value === "" ? false : true,
 
-    this.setState({
-      filterStatus: ev.target.value === "" ? false : true,
-      filter: this.handleFilter(regExp)
-    })
+      this.setState({
+
+        filter: this.handleFilter(regExp)
+      })
   };
 
 
@@ -56,8 +55,17 @@ class App extends Component {
   };
 
 
+  handleDelete = (ev) => {
+
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(elem => elem.id !== ev.target.id)
+    }))
+  }
+
+
   render() {
-    const { state, handleSubmit, handleChangeFindInput } = this
+
+    const { state, handleSubmit, handleChangeFindInput, handleDelete, filterStatus } = this
 
     return (<>
       <div>
@@ -73,7 +81,9 @@ class App extends Component {
         />
 
         <ContactsList
-          contacts={state.filterStatus ? state.filter : state.contacts}
+          contacts={filterStatus ? state.filter : state.contacts}
+          handleDelete={handleDelete}
+          deleteStatus={filterStatus ? false : true}
         />
       </div>
     </>)

@@ -15,7 +15,6 @@
   margin-right: auto;
   width: 300px;
   display: block;
-  /* margin-bottom: 30px; */
 }
 
 .label {
@@ -33,6 +32,10 @@
   border: rgb(20, 20, 19) solid 2px;
   border-radius: 5px;
 }
+.button:hover,
+.button:focus {
+  background-color: rgb(99, 195, 233);
+}
 
 .list {
   list-style: none;
@@ -47,13 +50,18 @@
 .listItem:not(:last-child) {
   border-bottom: 1px solid #000;
 }
+
 .listItem {
   padding-left: 20px;
-  text-align: left;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
+
 .listItem:nth-child(even) {
   background-color: azure;
 }
+
 .listItem:nth-child(odd) {
   background-color: rgb(178, 231, 231);
 }
@@ -61,6 +69,18 @@
 .deleteButton {
   background-color: rgb(130, 233, 99);
   margin-right: 20px;
-  margin-left: auto;
-  display: inline-block;
+  border: 1px black solid;
+  font-size: 10px;
+  height: 16px;
+  border-radius: 5px;
+}
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: rgb(99, 195, 233);
+}
+
+.deleteButton,
+.button {
+  transition-property: background-color;
+  transition-duration: 300ms;
 }

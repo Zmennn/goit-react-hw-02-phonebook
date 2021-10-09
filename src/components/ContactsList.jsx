@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
 import style from './ContactsList.module.css';
 import PropTypes from "prop-types";
 
@@ -13,12 +12,12 @@ class ContactsList extends Component{
                         className={style.listItem}
                         key={el.id} >
                         {el.name}:  {el.number}
-                        <button
+                        {this.props.deleteStatus && (<button
                             type="button"
                             className={style.deleteButton}
                             id={el.id}
-                        
-                        >Delete</button>
+                            onClick={this.props.handleDelete}
+                        >Delete</button>)}
                       </li>))
                 }
         </ul>
@@ -30,5 +29,7 @@ class ContactsList extends Component{
 export default ContactsList
 
 ContactsList.propTypes = {
-    contacts: PropTypes.array.isRequired
+    contacts: PropTypes.array.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    deleteStatus:PropTypes.bool.isRequired,
 }
